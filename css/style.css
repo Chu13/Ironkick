@@ -1,0 +1,36 @@
+body {
+  background-color: black;
+}
+
+canvas {
+  border: 1px solid white;
+  background-color: green;
+  margin: 80px 80px;
+}
+
+h1 {
+  color: white;
+}
+
+.start-page {
+  background-image: url('../images/background.jpg');
+  width: 800px;
+  height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.start-text{
+  text-align: center;
+  padding: 90px;
+  color: white;
+  font-size: 4em;
+}
+
+.start-btn {
+  margin:150px 380px;
+  padding: 20px 50px;
+  color: white;
+  background-color: red;
+  border: none;
+}
