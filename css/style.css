@@ -13,6 +13,7 @@ h1 {
 }
 
 .start-page {
+  margin-left: 100px;
   background-image: url('../images/background.jpg');
   width: 800px;
   height: 600px;
