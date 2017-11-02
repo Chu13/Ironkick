@@ -370,8 +370,8 @@ var goal = false;
    function isGoal(){
      $('#game-two').fadeOut();
      $('#third-gif').fadeIn(1000);
-     setTimeout(function(){$('#third-gif').fadeOut();}, 3500);
-     setTimeout(function(){$('#win-page').fadeIn();}, 4000);
+     setTimeout(function(){$('#third-gif').fadeOut();}, 5000);
+    //  setTimeout(function(){$('#win-page').fadeIn();}, 4000);
 
    }
 });
