@@ -1,5 +1,26 @@
 
 $(document).ready( function (){
+  $('#third-gif').hide();
+  $('#second-gif').hide();
+  $('#game-two').hide();
+  $('#first-gif').hide();
+  $('#canvas-game').hide();
+  $('#game-over').hide();
+  $('#win-page').hide();
+
+  $(".start-btn").click(function(){
+    $(".start-page").fadeOut();
+    setTimeout(function(){$('#first-gif').fadeOut();}, 3000);
+    $("#first-gif").fadeIn(1000);
+    setTimeout(function(){$("#canvas-game").fadeIn(2000);}, 3500);
+  });
+
+  function foul(){
+    $("#canvas-game").fadeOut();
+    $('#second-gif').fadeIn(1000);
+    setTimeout(function(){$('#second-gif').fadeOut();}, 2500);
+    setTimeout(function(){$("#game-two").fadeIn(1000);}, 3000);
+  }
 var canvas = document.querySelector('#canvas-game');
 
 var ctx = canvas.getContext('2d');
@@ -52,7 +73,7 @@ var player = {
   width: 50,
   height: 50,
   draw: function () {
-      ctx.fillStyle = 'indigo';
+      ctx.fillStyle = 'Red';
       ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 };
@@ -71,6 +92,9 @@ $(document).keydown(function (event) {
       break;
 
     case 39: // right arrow
+    if (player.x >= 800){
+      foul();
+    }
     player.x += 15;
     break;
 
@@ -104,12 +128,12 @@ Defender.prototype.draw = function (){
 
 
 var defense = [
-  new Defender (50, 50,'white', 80, 240, 4),
-  new Defender (50, 50, 'white', 200, 240, 1),
-  new Defender (50, 50, 'white', 320, 240, 2),
-  new Defender (50, 50, 'white', 440, 240, 3),
-  new Defender (50, 50, 'white', 560, 240, 4),
-  new Defender (50, 50, 'white', 680, 240, 5),
+  new Defender (50, 50,'Blue', 80, 240, 4),
+  new Defender (50, 50, 'Blue', 200, 240, 1),
+  new Defender (50, 50, 'Blue', 320, 240, 2),
+  new Defender (50, 50, 'Blue', 440, 240, 3),
+  new Defender (50, 50, 'Blue', 560, 240, 4),
+  new Defender (50, 50, 'Blue', 680, 240, 5),
 ];
 
 Defender.prototype.crashWith = function (obj) {
@@ -143,25 +167,33 @@ function draw() {
  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   field();
-
- drawDefense(defense);
-
+  drawDefense(defense);
   player.draw();
+
     if (!isGameOver) {
      requestAnimationFrame(draw);
     }
 }
 requestAnimationFrame(draw);
 
+
+// ---------- Defense ---------
+
 function drawDefense(defenseArray){
 
   defenseArray.forEach(function (defender){
     if (defender.crashWith(player)){
   isGameOver = true;
+  youLose();
 }
     defender.update();
     defender.draw();
   });
+}
+
+function youLose(){
+  $("#canvas-game").fadeOut();
+  setTimeout(function(){$('#game-over').fadeIn();}, 2000);
 }
 
 });
@@ -175,6 +207,7 @@ var canvasTwo = document.querySelector('#game-two');
 var gameTwo = canvasTwo.getContext('2d');
 
 // ------- Field -------
+function halfField() {
 gameTwo.beginPath();
 gameTwo.strokeStyle = 'white';
 gameTwo.moveTo(20, 10);
@@ -185,6 +218,7 @@ gameTwo.lineTo(20, 10);
 gameTwo.stroke();
 gameTwo.closePath();
 
+// ------ Area -------
 gameTwo.beginPath();
 gameTwo.moveTo(100, 10);
 gameTwo.lineTo(100, 210);
@@ -195,33 +229,160 @@ gameTwo.lineTo(180, 110);
 gameTwo.lineTo(420, 110);
 gameTwo.lineTo(420, 10);
 gameTwo.stroke();
+gameTwo.closePath();
+
+gameTwo.beginPath();
+gameTwo.arc(300,210,70,0*Math.PI,1*Math.PI);
+gameTwo.stroke();
+gameTwo.closePath();
+}
 
 
 // ---- Goal line ---
+function goalLine () {
 gameTwo.beginPath();
 gameTwo.moveTo(230, 12);
 gameTwo.lineTo(370,12);
 gameTwo.strokeStyle = 'yellow';
 gameTwo.stroke();
 gameTwo.closePath();
+}
 
 // ------- Goalie -----
+function Goalie (x, y, width, height, color, speed) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.color = color;
+  this.speed = speed;
+  this.draw = function (){
+    gameTwo.fillStyle = this.color;
+    gameTwo.fillRect(this.x, this.y, this.width, this.height);
+  };
 
+  this.update = function () {
+    if (this.x + this.width > 380 || this.x < 220){
+      this.speed = -this.speed;
+    }
+      this.x += this.speed;
+      this.draw();
+  };
+}
+ var goalie = new Goalie (290, 15, 20, 20, 'indigo', 1);
 
+// ---------  Wall --------
+ function WallP (width, height, color, x, y) {
+   this.width = width;
+   this.height = height;
+   this.color = color;
+   this.x = x;
+   this.y = y;
+   this.draw = function (){
+     gameTwo.fillStyle = this.color;
+     gameTwo.fillRect(this.x, this.y, this.width, this.height);
+   };
+ }
 
-var goalie = {
-  x: 290,
-  y: 15,
-  width: 20,
-  height: 20,
-  color: 'Blue',
-  speed: 1,
+var wallOne = new WallP (20, 20, 'Blue', 230, 250);
+var wallTwo = new WallP (20, 20, 'Blue', 255, 250);
+var wallThird = new WallP (20, 20, 'Blue', 280, 250);
+var wallFour = new WallP (20, 20, 'Blue', 305, 250);
+
+// ------- Shooter -------
+
+function Shooter (x, y, width, height, color) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.color = color;
+  this.draw = function (){
+    gameTwo.fillStyle = this.color;
+    gameTwo.fillRect(this.x, this.y, this.width, this.height);
+  };
+}
+
+var kicker = new Shooter (250, 400, 20, 20, 'Red');
+
+// --------- Ball ----------
+
+var ball = {
+  x: 260,
+  y: 390,
+  speed: 5,
+  radius: 5,
+  start: 0*Math.PI,
+  end: 2*Math.PI,
   draw: function () {
-      gameTwo.fillStyle = goalie.color;
-      gameTwo.fillRect(this.x, this.y, this.width, this.height);
+      gameTwo.beginPath();
+      gameTwo.fillStyle = 'white';
+      gameTwo.arc(this.x,this.y,this.radius,this.start,this.end);
+      gameTwo.fill();
+      gameTwo.closePath();
+  },
+  update: function() {
+    if (ball.y < 1){
+      // goal();
+    }
+    ball.y -= 3;
   }
+
 };
 
-goalie.draw();
+var ballKick = false;
+addEventListener('keydown', function(e) {
+      if (e.keyCode == 32) {
+      ballKick = true;
+      }
+    });
 
+
+// ---- Second Part Logic ----
+
+var goal = false;
+
+ function drawGoalie() {
+     gameTwo.clearRect(0, 0, canvasTwo.width, canvasTwo.height);
+     if (!goal){
+     requestAnimationFrame(drawGoalie);
+     }
+     halfField();
+     goalLine();
+     wallOne.draw();
+     wallTwo.draw();
+     wallThird.draw();
+     wallFour.draw();
+     kicker.draw();
+     ball.draw();
+     if (ballKick == true){
+     ball.update();
+     }
+     if (ball.y < 1){
+       goal = true;
+       isGoal();
+     }
+
+     goalie.update();
+   }
+   drawGoalie();
+
+   function isGoal(){
+     $('#game-two').fadeOut();
+     $('#third-gif').fadeIn(1000);
+     setTimeout(function(){$('#third-gif').fadeOut();}, 3500);
+     setTimeout(function(){$('#win-page').fadeIn();}, 4000);
+
+   }
 });
+
+
+
+
+
+
+//https://media.giphy.com/media/IUmViDZrGLol2/giphy.gif
+
+//----- Player sticker------
+//https://media.giphy.com/media/11nUsPdWtoRQ40/giphy.gif
+//https://media.giphy.com/media/FgIuR807RlpZe/giphy.gif

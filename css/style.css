@@ -13,7 +13,8 @@ h1 {
 }
 
 .start-page {
-  margin-left: 100px;
+  margin: 0 auto;
+  display: block;
   background-image: url('../images/background.jpg');
   width: 800px;
   height: 600px;
@@ -34,4 +35,32 @@ h1 {
   color: white;
   background-color: red;
   border: none;
+}
+
+.gif {
+  display: block;
+  margin: 200px auto;
+  width: 600px;
+  height: 700px;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+#game-over {
+  background-image: url('../images/losing-soccer-game.jpg');
+  text-align: center;
+  width: 750px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#game-over h1 {
+  padding-top: 200px;
+}
+
+#win-page{
+  
 }
