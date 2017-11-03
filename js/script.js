@@ -1,16 +1,17 @@
 
 $(document).ready( function (){
-    // $('#third-gif').hide();
-    // $('#second-gif').hide();
-    // $('#game-two').hide();
-    // $('#first-gif').hide();
-    // $('#canvas-game').hide();
-    // $('#game-over').hide();
-    // $('#win-page').hide();
-    // $('#lose-gif').hide();
-    // $('#whistle-gif').hide();
-    // $('#celebration').hide();
-
+    $('#third-gif').hide();
+    $('#second-gif').hide();
+    $('#game-two').hide();
+    $('#first-gif').hide();
+    $('#canvas-game').hide();
+    $('#game-over').hide();
+    $('#win-page').hide();
+    $('#lose-gif').hide();
+    $('#whistle-gif').hide();
+    $('#celebration').hide();
+// ------- Audio -------
+var audioGoal = new Audio('../Sounds/Goal.wav');
 // ------- First Page --------
     $(".start-btn").click(function(){
         $(".start-page").fadeOut();
@@ -370,6 +371,7 @@ var ballKick = false;
 addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
       ballKick = true;
+      audioGoal.play();
       }
     });
 
