@@ -12,7 +12,7 @@ $(document).ready( function (){
     $('#celebration').hide();
 
            var audioPlay = new Audio('Sounds/playing.wav');
-           var audioFoul = new Audio('Sounds/foulE.wav');
+           var audioFoul = new Audio('Sounds/FoulE.wav');
            var audioLose = new Audio('Sounds/loseE.wav');
 
 // ------- First Page --------
