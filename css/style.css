@@ -7,9 +7,17 @@ canvas {
   background-color: green;
   margin: 80px 80px;
 }
-
-h1 {
+#header ul {
+  list-style-type: none;
   color: white;
+  margin-right: 80px;
+}
+
+
+
+#header h1 {
+  color: white;
+  margin-left: 50px;
 }
 
 .start-page {
@@ -24,17 +32,19 @@ h1 {
 
 .start-text{
   text-align: center;
-  padding: 90px;
+  padding: 50px;
   color: white;
   font-size: 4em;
 }
 
 .start-btn {
-  margin:150px 380px;
+  margin:300px 350px;
   padding: 20px 50px;
   color: white;
   background-color: red;
-  border: none;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .gif {
@@ -50,6 +60,7 @@ canvas {
 }
 
 #game-over {
+  margin: 50px auto;
   background-image: url('../images/losing-soccer-game.jpg');
   text-align: center;
   width: 750px;
@@ -58,9 +69,38 @@ canvas {
   background-repeat: no-repeat;
 }
 #game-over h1 {
-  padding-top: 200px;
+  color: white;
+  margin-top: 20px
+}
+
+#try-again{
+  padding:15px;
+  border-radius: 10px;
+  background-color: red;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
 }
 
 #win-page{
-  
+  color: white;
+  margin: 0 auto;
+  display: block;
+  background-image: url('../images/champions.jpg');
+  width: 800px;
+  height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#win-page button {
+  display: block;
+  margin: 50px auto;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: red;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
 }

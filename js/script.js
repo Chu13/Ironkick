@@ -1,82 +1,88 @@
 
 $(document).ready( function (){
-  $('#third-gif').hide();
-  $('#second-gif').hide();
-  $('#game-two').hide();
-  $('#first-gif').hide();
-  $('#canvas-game').hide();
-  $('#game-over').hide();
-  $('#win-page').hide();
+    $('#third-gif').hide();
+    $('#second-gif').hide();
+    $('#game-two').hide();
+    $('#first-gif').hide();
+    $('#canvas-game').hide();
+    $('#game-over').hide();
+    $('#win-page').hide();
+    $('#lose-gif').hide();
+    $('#whistle-gif').hide();
+    $('#celebration').hide();
 
-  $(".start-btn").click(function(){
-    $(".start-page").fadeOut();
-    setTimeout(function(){$('#first-gif').fadeOut();}, 3000);
-    $("#first-gif").fadeIn(1000);
-    setTimeout(function(){$("#canvas-game").fadeIn(2000);}, 3500);
-  });
+// ------- First Page --------
+    $(".start-btn").click(function(){
+        $(".start-page").fadeOut();
+        setTimeout(function(){$('#first-gif').fadeOut();}, 3000);
+        $("#first-gif").fadeIn(1000);
+        setTimeout(function(){$("#canvas-game").fadeIn(2000);}, 3500);
+    });
 
+// ------- Second Page -------
   function foul(){
-    $("#canvas-game").fadeOut();
-    $('#second-gif').fadeIn(1000);
-    setTimeout(function(){$('#second-gif').fadeOut();}, 2500);
-    setTimeout(function(){$("#game-two").fadeIn(1000);}, 3000);
+        $("#canvas-game").fadeOut();
+        $('#second-gif').fadeIn(1000);
+        setTimeout(function(){$('#second-gif').fadeOut();}, 2500);
+        setTimeout(function(){$("#game-two").fadeIn(1000);}, 3000);
   }
-var canvas = document.querySelector('#canvas-game');
 
-var ctx = canvas.getContext('2d');
+  var canvas = document.querySelector('#canvas-game');
+
+  var ctx = canvas.getContext('2d');
 
 
 // ------ Field 1-----
-function field() {
-  ctx.beginPath();
-  ctx.strokeStyle = 'white';
-  ctx.moveTo(0, 20);
-  ctx.lineTo(1000, 20);
-  ctx.moveTo(0, 480);
-  // ctx.lineTo(20, 480);
-  ctx.lineTo(1000, 480);
-  ctx.moveTo(400, 20);
-  ctx.lineTo(400, 480);
-  ctx.stroke();
-  ctx.closePath();
+  function field() {
+        ctx.beginPath();
+        ctx.strokeStyle = 'white';
+        ctx.moveTo(0, 20);
+        ctx.lineTo(1000, 20);
+        ctx.moveTo(0, 480);
+        // ctx.lineTo(20, 480);
+        ctx.lineTo(1000, 480);
+        ctx.moveTo(400, 20);
+        ctx.lineTo(400, 480);
+        ctx.stroke();
+        ctx.closePath();
 
-  ctx.beginPath();
-  ctx.arc(400, 250, 100, 0, 360, false);
-  ctx.stroke();
-  ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(400, 250, 100, 0, 360, false);
+        ctx.stroke();
+        ctx.closePath();
 
-  ctx.beginPath();
-  ctx.moveTo(1000, 100);
-  ctx.lineTo(940, 100);
-  ctx.lineTo(940, 400);
-  ctx.lineTo(1000, 400);
-  ctx.stroke();
-  ctx.closePath();
+        ctx.beginPath();
+        ctx.moveTo(1000, 100);
+        ctx.lineTo(940, 100);
+        ctx.lineTo(940, 400);
+        ctx.lineTo(1000, 400);
+        ctx.stroke();
+        ctx.closePath();
 
-  ctx.beginPath();
-  ctx.arc(940, 250, 50, 0.5*Math.PI, 1.5*Math.PI, false);
-  ctx.stroke();
-  ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(940, 250, 50, 0.5*Math.PI, 1.5*Math.PI, false);
+        ctx.stroke();
+        ctx.closePath();
 
-  ctx.beginPath();
-  ctx.arc(998, 250, 2, 0, 360, false);
-  ctx.fillStyle = 'white';
-  ctx.fill();
-  ctx.closePath();
-}
+        ctx.beginPath();
+        ctx.arc(998, 250, 2, 0, 360, false);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
+      }
 
 // ------ Player ------
 
-var player = {
-  x: 0,
-  y: 290,
-  width: 50,
-  height: 50,
-  draw: function () {
-      ctx.fillStyle = 'Red';
-      ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-};
+  var player = {
+    x: 0,
+    y: 290,
+    width: 40,
+    height: 40,
+    draw: function () {
+        ctx.fillStyle = 'Red';
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+  };
 
 // ------ Player Movement -----
 
@@ -128,12 +134,12 @@ Defender.prototype.draw = function (){
 
 
 var defense = [
-  new Defender (50, 50,'Blue', 80, 240, 4),
-  new Defender (50, 50, 'Blue', 200, 240, 1),
-  new Defender (50, 50, 'Blue', 320, 240, 2),
-  new Defender (50, 50, 'Blue', 440, 240, 3),
-  new Defender (50, 50, 'Blue', 560, 240, 4),
-  new Defender (50, 50, 'Blue', 680, 240, 5),
+  new Defender (40, 40,'Blue', 85, 240, 4),
+  new Defender (40, 40, 'Blue', 195, 240, 1),
+  new Defender (40, 40, 'Blue', 315, 240, 2),
+  new Defender (40, 40, 'Blue', 435, 240, 3),
+  new Defender (40, 40, 'Blue', 555, 240, 4),
+  new Defender (40, 40, 'Blue', 670, 240, 5),
 ];
 
 Defender.prototype.crashWith = function (obj) {
@@ -159,6 +165,31 @@ function getRight(obj) {
   return obj.x + obj.width;
 }
 
+
+//------ Last Defender ------
+function Defender2 (width, height, color, x, y, speed) {
+      this.width = width;
+      this.height = height;
+      this.color = color;
+      this.x = x;
+      this.y = y;
+      this.speed = speed;
+      this.draw = function (){
+          ctx.fillStyle = this.color;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+          };
+      this.update = function () {
+          if (this.y + this.height > 400|| this.y < 100){
+            this.speed = -this.speed;
+          }
+            this.y += this.speed;
+            this.draw();
+          };
+
+      }
+      var defender2 = new Defender2(50, 50, 'Blue', 950, 230, 10);
+
+
 // ---------- Updating -------
 
 var isGameOver = false;
@@ -169,6 +200,7 @@ function draw() {
   field();
   drawDefense(defense);
   player.draw();
+  defender2.update();
 
     if (!isGameOver) {
      requestAnimationFrame(draw);
@@ -193,7 +225,11 @@ function drawDefense(defenseArray){
 
 function youLose(){
   $("#canvas-game").fadeOut();
-  setTimeout(function(){$('#game-over').fadeIn();}, 2000);
+  $('#lose-gif').fadeIn(1000);
+  setTimeout(function(){$('#lose-gif').fadeOut();}, 3500);
+  setTimeout(function(){$('#whistle-gif').fadeIn();}, 4000);
+  setTimeout(function(){$('#whistle-gif').fadeOut();}, 5500);
+  setTimeout(function(){$('#game-over').fadeIn();}, 6000);
 }
 
 });
@@ -369,9 +405,11 @@ var goal = false;
 
    function isGoal(){
      $('#game-two').fadeOut();
-     $('#third-gif').fadeIn(1000);
-     setTimeout(function(){$('#third-gif').fadeOut();}, 5000);
-    //  setTimeout(function(){$('#win-page').fadeIn();}, 4000);
+     $('#third-gif').fadeIn(100);
+     setTimeout(function(){$('#third-gif').fadeOut();}, 4000);
+     setTimeout(function(){$('#celebration').fadeIn();}, 4500);
+     setTimeout(function(){$('#celebration').fadeOut();}, 5500);
+     setTimeout(function(){$('#win-page').fadeIn();}, 6000);
 
    }
 });
