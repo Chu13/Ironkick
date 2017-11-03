@@ -13,6 +13,7 @@ $(document).ready( function (){
 
            var audioPlay = new Audio('Sounds/playing.wav');
            var audioFoul = new Audio('Sounds/foulE.wav');
+           var audioLose = new Audio('Sounds/loseE.wav');
 
 // ------- First Page --------
     $(".start-btn").click(function(){
@@ -29,6 +30,8 @@ $(document).ready( function (){
         $('#second-gif').fadeIn(1000);
         setTimeout(function(){$('#second-gif').fadeOut();}, 2500);
         setTimeout(function(){$("#game-two").fadeIn(1000);}, 3000);
+        audioPlay.pause();
+        audioFoul.play();
   }
 
   var canvas = document.querySelector('#canvas-game');
@@ -104,8 +107,6 @@ $(document).keydown(function (event) {
     case 39: // right arrow
     if (player.x >= 800){
       foul();
-      audioPlay.pause();
-      audioFoul.play();
     }
     player.x += 15;
     break;
@@ -231,6 +232,8 @@ function drawDefense(defenseArray){
 
 function youLose(){
   $("#canvas-game").fadeOut();
+  audioPlay.pause();
+  audioLose.play();
   $('#lose-gif').fadeIn(1000);
   setTimeout(function(){$('#lose-gif').fadeOut();}, 3500);
   setTimeout(function(){$('#whistle-gif').fadeIn();}, 4000);
