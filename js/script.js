@@ -10,14 +10,17 @@ $(document).ready( function (){
     $('#lose-gif').hide();
     $('#whistle-gif').hide();
     $('#celebration').hide();
-// ------- Audio -------
-// var audioGoal = new Audio('./Sounds/Goal.mp3');
+
+           var audioPlay = new Audio('Sounds/playing.wav');
+           var audioFoul = new Audio('Sounds/foulE.wav');
+
 // ------- First Page --------
     $(".start-btn").click(function(){
         $(".start-page").fadeOut();
         setTimeout(function(){$('#first-gif').fadeOut();}, 3000);
         $("#first-gif").fadeIn(1000);
         setTimeout(function(){$("#canvas-game").fadeIn(2000);}, 3500);
+        setTimeout(function(){audioPlay.play();}, 3500);
     });
 
 // ------- Second Page -------
@@ -101,6 +104,8 @@ $(document).keydown(function (event) {
     case 39: // right arrow
     if (player.x >= 800){
       foul();
+      audioPlay.pause();
+      audioFoul.play();
     }
     player.x += 15;
     break;
@@ -371,6 +376,8 @@ var ballKick = false;
 addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
       ballKick = true;
+      audioGoal.play();
+      audioWhistle.play();
       }
     });
 
@@ -413,6 +420,10 @@ var goal = false;
      setTimeout(function(){$('#win-page').fadeIn();}, 6000);
 
    }
+
+   // ------- Audio -------
+       var audioGoal = new Audio('Sounds/GoalF.mp3');
+       var audioWhistle = new Audio('Sounds/whistle.wav');
 });
 
 
