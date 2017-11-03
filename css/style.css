@@ -1,11 +1,14 @@
 body {
   background-color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 canvas {
   border: 1px solid white;
   background-color: green;
-  margin: 80px 80px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 #header ul {
   list-style-type: none;
@@ -28,6 +31,7 @@ canvas {
   height: 600px;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 10px;
 }
 
 .start-text{
@@ -38,7 +42,8 @@ canvas {
 }
 
 .start-btn {
-  margin:300px 350px;
+  font-size: 1em;
+  margin:290px 350px;
   padding: 20px 50px;
   color: white;
   background-color: red;
@@ -54,10 +59,6 @@ canvas {
   height: 700px;
 }
 
-canvas {
-  display: block;
-  margin: 0 auto;
-}
 
 #game-over {
   margin: 50px auto;
@@ -67,6 +68,7 @@ canvas {
   height: 500px;
   background-size: contain;
   background-repeat: no-repeat;
+  border-radius: 10px;
 }
 #game-over h1 {
   color: white;
@@ -92,9 +94,11 @@ canvas {
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
+  border-radius: 10px;
 }
 
 #win-page button {
+  font-size: 1em;
   display: block;
   margin: 50px auto;
   padding: 15px;

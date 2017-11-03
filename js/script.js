@@ -1,15 +1,15 @@
 
 $(document).ready( function (){
-    $('#third-gif').hide();
-    $('#second-gif').hide();
-    $('#game-two').hide();
-    $('#first-gif').hide();
-    $('#canvas-game').hide();
-    $('#game-over').hide();
-    $('#win-page').hide();
-    $('#lose-gif').hide();
-    $('#whistle-gif').hide();
-    $('#celebration').hide();
+    // $('#third-gif').hide();
+    // $('#second-gif').hide();
+    // $('#game-two').hide();
+    // $('#first-gif').hide();
+    // $('#canvas-game').hide();
+    // $('#game-over').hide();
+    // $('#win-page').hide();
+    // $('#lose-gif').hide();
+    // $('#whistle-gif').hide();
+    // $('#celebration').hide();
 
 // ------- First Page --------
     $(".start-btn").click(function(){
