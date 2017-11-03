@@ -62,8 +62,8 @@ canvas {
 
 #game-over {
   margin: 50px auto;
-  background-image: url('../images/losing-soccer-game.jpg');
   text-align: center;
+  background-image: url('../images/losing-soccer-game.jpg');
   width: 750px;
   height: 500px;
   background-size: contain;

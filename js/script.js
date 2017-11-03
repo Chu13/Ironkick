@@ -11,7 +11,7 @@ $(document).ready( function (){
     $('#whistle-gif').hide();
     $('#celebration').hide();
 // ------- Audio -------
-var audioGoal = new Audio('../Sounds/Goal.wav');
+// var audioGoal = new Audio('./Sounds/Goal.mp3');
 // ------- First Page --------
     $(".start-btn").click(function(){
         $(".start-page").fadeOut();
@@ -371,7 +371,6 @@ var ballKick = false;
 addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
       ballKick = true;
-      audioGoal.play();
       }
     });
 
